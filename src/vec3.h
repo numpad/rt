@@ -6,7 +6,7 @@
 
 typedef struct {
 	float x, y, z;
-} __attribute__((packed)) vec3;
+} vec3;
 
 vec3 vec3_new(const float x, const float y, const float z) {
 	vec3 vec;
