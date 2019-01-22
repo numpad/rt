@@ -36,7 +36,14 @@ void image_set(Image *img, int x, int y, int r, int g, int b) {
 		printf("out of bounds. (pos = %d, %d)", x, y);
 		return;
 	}
-
+	
+	if (r > 255) r = 255;
+	else if (r < 0) r = 0;
+	if (g > 255) g = 255;
+	else if (g < 0) g = 0;
+	if (b > 255) b = 255;
+	else if (b < 0) b = 0;
+	
 	img->pixels[(x + y * img->width) * 3 + 0] = r;
 	img->pixels[(x + y * img->width) * 3 + 1] = g;
 	img->pixels[(x + y * img->width) * 3 + 2] = b;

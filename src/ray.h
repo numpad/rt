@@ -37,7 +37,7 @@ vec3 ray_project_point(Ray *ray, vec3 q) {
 int ray_intersects_sphere(Ray *ray, const vec3 c, const float r, RayHit is[2]) {
 	/* from ray origin to sphere */
 	vec3 vpc = vec3_sub(c, ray->p);
-
+	
 	/* ray can intersect with sphere as it is in front of it */
 	if (vec3_dot(ray->d, vpc) > 0.0f) {
 		vec3 pc = ray_project_point(ray, c);
@@ -59,8 +59,10 @@ int ray_intersects_sphere(Ray *ray, const vec3 c, const float r, RayHit is[2]) {
 			
 			vec3 n1 = vec3_normalize(vec3_sub(is[0].p, c));
 			vec3 n2 = vec3_normalize(vec3_sub(is[1].p, c));
-			is[0].n = vec3_normalize(vec3_sub(ray->d, vec3_mult(n1, 2.0f * vec3_dot(ray->d, n1))));
-			is[1].n = vec3_normalize(vec3_sub(ray->d, vec3_mult(n2, 2.0f * vec3_dot(ray->d, n2))));
+			//is[0].n = vec3_normalize(vec3_sub(ray->d, vec3_mult(n1, 2.0f * vec3_dot(ray->d, n1))));
+			//is[1].n = vec3_normalize(vec3_sub(ray->d, vec3_mult(n2, 2.0f * vec3_dot(ray->d, n2))));
+			is[0].n = n1;
+			is[1].n = n2;
 			
 			/* sort by distance */
 			float lp1 = vec3_len(vec3_sub(is[0].p, ray->p));
